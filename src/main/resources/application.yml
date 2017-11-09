@@ -1,0 +1,52 @@
+spring:
+  session:
+    store-type: none
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:mem:db
+    username: sa
+    password: 
+    driverClassName: org.h2.Driver
+    initialize: true
+    schema: classpath:db/schema.sql
+    data: classpath:db/data.sql
+  jpa:
+    hibernate:
+      ddl-auto: none
+    
+katharsis:
+  resourcePackage: com.kiwi.insurance.domain
+  domainName: http://localhost:9090/kiwi
+  pathPrefix: /api
+  
+server:
+  context-path: /kiwi
+  port: 9090
+  
+info:
+  insurance-service:
+    name: Insurance Service Application
+    description: This is a sample insurance-service application
+    version: 1.0.0
+    
+endpoints:
+  health:
+    id: health
+    sensitive: false
+    enabled: true
+  info:
+    id: info
+    sensitive: false
+    enabled: true
+  metrics:
+    id: metrics
+    sensitive: false
+    enabled: true
+  trace:
+    id: trace
+    sensitive: false
+    enabled: true
+  
