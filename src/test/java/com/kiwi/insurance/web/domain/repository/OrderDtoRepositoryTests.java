@@ -29,7 +29,10 @@ import io.katharsis.queryspec.QuerySpec;
 @SpringBootTest(
 	webEnvironment = WebEnvironment.DEFINED_PORT,
 	classes = InsuranceApplication.class,
-	properties = "spring.datasource.initialize=false"
+	properties = {
+		"security.ignored=/**",
+		"spring.datasource.initialize=false"	
+	}
 )
 public class OrderDtoRepositoryTests {
 	

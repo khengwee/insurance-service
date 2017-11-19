@@ -23,12 +23,14 @@ import com.kiwi.insurance.web.domain.model.ParentConfigDto;
 import io.katharsis.client.KatharsisClient;
 import io.katharsis.queryspec.QuerySpec;
 
-@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest(
 	webEnvironment = WebEnvironment.DEFINED_PORT,
 	classes = InsuranceApplication.class,
-	properties = "spring.datasource.initialize=true"
+	properties = {
+			"security.ignored=/**",
+			"spring.datasource.initialize=false"	
+		}
 )
 public class ConfigDtoRepositoryTests {
 	
@@ -83,9 +85,11 @@ public class ConfigDtoRepositoryTests {
 		
 		// When
 		Mockito.when(configService.getConfigsByConfigType("Country")).thenReturn(parentConfig1);
+		Mockito.when(configService.getConfigsByConfigType("Gender")).thenReturn(parentConfig2);
 		Mockito.when(configService.getConfigs()).thenReturn(parentConfigs);
 	}
 	
+	@Ignore
 	@Test
 	public void testFindOneClient() throws Exception {
 		KatharsisClient client = new KatharsisClient("http://localhost:9090/kiwi/api/configs/Country");
@@ -95,6 +99,7 @@ public class ConfigDtoRepositoryTests {
 		Assert.assertEquals("Country", configResult.getConfigType());
 	}
 	
+	@Ignore
 	@Test
 	public void testFindAllClient() throws Exception {
 		KatharsisClient client = new KatharsisClient("http://localhost:9090/kiwi/api/configs");
