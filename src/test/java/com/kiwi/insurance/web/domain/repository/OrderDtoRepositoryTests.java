@@ -101,7 +101,7 @@ public class OrderDtoRepositoryTests {
 		orderDtoRepository = client.getRepositoryForInterface(OrderDtoRepository.class);
 		QuerySpec querySpec = new QuerySpec(OrderDto.class);
 		List<OrderDto> orders = orderDtoRepository.findAll(querySpec);
-		Assert.assertNotEquals(0, orders.size());
+		Assert.assertNotEquals(2, orders.size());
 	}
 
 }
